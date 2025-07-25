@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Portfolio</title>
+    <link href="css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>Darren's Portfolio</h1>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#profile">My Profile</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="hero">
+        <h2><span class="typing"></span></h2>
+    </section>
+
+    <section id="profile">
+        <h2 style="margin-bottom: 40px; display: flex; flex-direction: column; align-items: center;">My Profile</h2>
+        <div class="profile-content fade-in">
+            <img src="imgs/darren.jpeg" alt="Profile Picture" class="profile-img fade-in">
+            <div class="profile-text fade-in">
+                <h3>Hello! I'm Darren 👋</h3>
+                <p>
+                    I'm an aspiring IT developer passionate about building creative and functional digital experiences.
+                    I enjoy working on full-stack web apps, game development, and anything that blends code with
+                    creativity.
+                </p>
+                <p>
+                    This portfolio showcases some of my proudest projects – from game design to real-world web
+                    applications.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <h2 style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px">My Achievements</h2>
+    </section>
+
+
+    <section id="projects">
+        <h2 style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px">My Projects</h2>
+        <div class="projects">
+            <a href="projects/hsr/main.html" target="_blank" style="text-decoration: none; color: white">
+                <div class="project-card fade-in" style="background-image: url('imgs/hsr-1.png');">
+                    <div class="overlay">
+                        <h3>Honkai: Star Rail Guide Website</h3>
+                        <p>The first website I ever made.</p>
+                        <p>This is a website that serves as a guide for the popular turn-based RPG game; Honkai: Star
+                            Rail.</p>
+                    </div>
+                </div>
+            </a>
+
+            <div class="project-card fade-in" style="background-image: url('/imgs/rmk-1.png');">
+                <div class="overlay">
+                    <h3>reMarkable</h3>
+                    <p>The first web application I worked on with a working backend.</p>
+                    <p>reMarkable is an e-commerce website that primarily sells eco-friendly tablets.</p>
+                    <p>This is a web application made with Python, HTML, and Flask.</p>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" style="background-image: url('/imgs/eom-1.png');">
+                <div class="overlay">
+                    <h3>Ember of Memory</h3>
+                    <p>I decided to try something new and make a game.</p>
+                    <p>This is a classic JRPG game made using the RPGMaker MZ engine.</p>
+                </div>
+            </div>
+
+            <div class="project-card fade-in" style="background-image: url('/imgs/sccci-1.png');">
+                <div class="overlay">
+                    <h3>(IN PROGESS) SCCCI Chatbot Website</h3>
+                    <p>This is a collaborative chatbot website for the company SCCCI.</p>
+                    <p>It features GenAI, React, and Node.js</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 style="text-align: center; margin-bottom: 20px;">Contact Me</h2>
+        <div class="contact-container">
+            <a href="mailto:darrentham1210@gmail.com" class="contact-item" target="_blank">
+                <i class="fas fa-envelope"></i>
+                <span>darrentham1210@gmail.com</span>
+            </a>
+            <a href="https://github.com/nerradical" target="_blank" class="contact-item">
+                <i class="fab fa-github"></i>
+                <span>github.com/nerradical</span>
+            </a>
+            <a href="https://www.linkedin.com/in/darren-tham-057886332" target="_blank" class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <span>linkedin.com/in/darren-tham-057886332</span>
+            </a>
+        </div>
+    </section>
+
+
+    <footer>
+        © 2025 Darren Tham. All rights reserved.
+    </footer>
+
+    <script>
+        const fadeEls = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        fadeEls.forEach(el => observer.observe(el));
+
+        const messages = [
+            "Hi, I'm Darren – IT Student & Developer",
+            "I build websites and software with style.",
+            "Welcome to my portfolio."
+        ];
+
+        const typingElement = document.querySelector('.typing');
+        let messageIndex = 0;
+
+        function typeMessage() {
+            const text = messages[messageIndex];
+            typingElement.textContent = '';
+            typingElement.style.width = '0ch';
+            typingElement.style.animation = 'none';
+
+            // Typing animation rebuild
+            setTimeout(() => {
+                typingElement.style.width = text.length + 'ch';
+                typingElement.style.animation =
+                    `typing 2s steps(${text.length}, end) forwards, blink 0.75s infinite`;
+                typingElement.textContent = text;
+            }, 50);
+
+            // Move to next message after delay
+            messageIndex = (messageIndex + 1) % messages.length;
+            setTimeout(typeMessage, 3500); // Total time per message
+        }
+
+        typeMessage(); // Start loop
+    </script>
+</body>
+
+</html>
